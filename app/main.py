@@ -60,8 +60,7 @@ async def scrape_data(max_pages: int, proxy: str) -> dict:
         Log.L(Log.E, "Error scrapping/updating data {}", e)
         return {"message": "failed with error {}".format(e)}
 
-# @app.get("/scrape", dependencies=[Depends(verify_token)])
-@app.get("/scrape")
+@app.get("/scrape", dependencies=[Depends(verify_token)])
 async def scrape(max_pages: Optional[int] = 5, proxy: Optional[str] = None) -> dict:
     return await scrape_data(max_pages=max_pages, proxy=proxy)
 
